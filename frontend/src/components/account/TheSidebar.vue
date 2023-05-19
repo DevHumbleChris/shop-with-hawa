@@ -8,13 +8,13 @@ const selectedRoute = ref('dashboard')
 
 <template>
     <aside
-        class="fixed z-50 p-2 flex items-center bg-primary md:flex-col md:sticky bottom-0 md:top-0 md:h-screen w-full md:w-[17rem] space-x-2 py-20">
+        class="fixed z-50 p-2 flex items-center bg-primary md:flex-col md:sticky bottom-0 md:top-0 md:h-screen w-full md:w-[17rem] space-x-2 md:py-20 text-white">
         <ul
             class="md:p-3 p-2 flex items-center justify-between md:flex-col md:items-start md:justify-evenly md:space-y-8 sm:mt-0 group w-full">
             <li class="md:w-full">
                 <RouterLink to="/admin/account/dashboard" class="flex items-center space-x-2">
                     <Squares2X2Icon class="w-auto h-6 sm:h-8" />
-                    <p :class="selectedRoute === 'dashboard' ? 'text-xs md:text-lg' : 'hidden md:block md:text-lg'">
+                    <p :class="selectedRoute === 'add-product' ? 'text-xs md:text-lg' : 'hidden md:block md:text-lg'">
                         Dashboard
                     </p>
                 </RouterLink>

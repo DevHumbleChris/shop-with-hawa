@@ -72,7 +72,7 @@ const handleChangeOnImg = (e) => {
             <div class="flex items-center space-x-1 text-gray-500">
                 <HomeIcon class="w-6" />
                 <span>></span>
-                <span class="block text-indigo-600"> Add Product</span>
+                <span class="block text-indigo-600">add-product</span>
             </div>
         </div>
         <form @submit.prevent="handleSubmit" class="grid my-4 mb-20 max-w-3xl mx-auto">
