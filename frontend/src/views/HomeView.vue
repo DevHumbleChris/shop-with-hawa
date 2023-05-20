@@ -7,6 +7,11 @@ import { collection, onSnapshot, orderBy, query, limit } from 'firebase/firestor
 import { useCartStore } from '@/stores/cart'
 import { useRouter } from 'vue-router'
 import { useSearchStore } from '@/stores/search'
+import { useHead } from 'unhead'
+
+useHead({
+  title: 'Shop With Hawa'
+})
 
 const cartStore = useCartStore()
 const featuredProducts = ref(null)

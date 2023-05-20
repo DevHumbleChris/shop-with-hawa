@@ -1,5 +1,5 @@
 <script setup>
-import { Squares2X2Icon, ArrowRightOnRectangleIcon, Cog6ToothIcon, CircleStackIcon, CloudArrowUpIcon } from '@heroicons/vue/24/solid'
+import { Squares2X2Icon, ArrowRightOnRectangleIcon, Cog6ToothIcon, CircleStackIcon } from '@heroicons/vue/24/solid'
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
@@ -24,14 +24,6 @@ const selectedRoute = ref('dashboard')
                     <CircleStackIcon class="w-auto h-6 sm:h-8" />
                     <p :class="selectedRoute === 'add-product' ? 'text-xs md:text-lg' : 'hidden md:block md:text-lg'">
                         Add Product
-                    </p>
-                </RouterLink>
-            </li>
-            <li class="md:w-full">
-                <RouterLink to="/admin/account/dashboard" class="flex items-center space-x-1">
-                    <CloudArrowUpIcon class="w-auto h-6 sm:h-8" />
-                    <p :class="selectedRoute === 'update-product' ? 'text-xs md:text-lg' : 'hidden md:block md:text-lg'">
-                        Update Product
                     </p>
                 </RouterLink>
             </li>

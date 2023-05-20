@@ -3,6 +3,11 @@ import ShopWrapper from '../components/ShopWrapper.vue'
 import { watchEffect, ref } from 'vue'
 import { db } from '@/utils/firebaseConfig'
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
+import { useHead } from 'unhead'
+
+useHead({
+  title: 'Shop With Hawa | Women\'s Clothing'
+})
 
 const products = ref(null)
 
