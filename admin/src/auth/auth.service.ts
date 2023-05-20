@@ -1,16 +1,22 @@
+import { User } from './../schemas/user.schema';
 import { UserDTO } from './../dto/user.dto';
 import { FirebaseAdmin } from '../firebase/firebase.service';
 import { Injectable, BadRequestException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly firebase: FirebaseAdmin) {}
+  constructor(
+    private readonly firebase: FirebaseAdmin,
+    @InjectModel(User.name) private userModel: Model<User>,
+  ) {}
   async signIn(data: UserDTO) {
-    return 'signin';
+    return data;
   }
 
   async signUp(data: UserDTO) {
-    return 'signUp';
+    return data;
   }
 
   // get users.
