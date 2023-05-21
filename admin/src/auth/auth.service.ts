@@ -21,7 +21,13 @@ export class AuthService {
 
     const hashedPassword = await this.hashPassword(data.password);
 
-    return hashedPassword;
+    // New user.
+    const newUser = await new this.userModel({
+      email: data.email,
+      password: hashedPassword,
+    });
+
+    return await newUser.save();
   }
 
   async signUp(data: UserDTO) {
