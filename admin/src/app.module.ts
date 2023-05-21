@@ -12,7 +12,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       isGlobal: true,
     }),
     MongooseModule.forRoot(
-      'mongodb+srv://thecodingmontana:@HackTheG8rt@shopwithhawacluster.6py9eif.mongodb.net/?retryWrites=true&w=majority',
+      'mongodb+srv://thecodingmontana:o5qISoTT3Tp0KKea@shopwithhawacluster.6py9eif.mongodb.net/?retryWrites=true&w=majority',
     ),
   ],
   controllers: [AppController],

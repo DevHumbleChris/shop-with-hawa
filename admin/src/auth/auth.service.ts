@@ -4,7 +4,7 @@ import { FirebaseAdmin } from '../firebase/firebase.service';
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-
+import * as bcrypt from 'bcrypt';
 @Injectable()
 export class AuthService {
   constructor(
@@ -12,7 +12,16 @@ export class AuthService {
     @InjectModel(User.name) private userModel: Model<User>,
   ) {}
   async signIn(data: UserDTO) {
-    return data;
+    // If users exists.
+    const user = await this.userModel.findOne({ email: data.email });
+
+    if (user) {
+      throw new BadRequestException('Email Already Exists!');
+    }
+
+    const hashedPassword = await this.hashPassword(data.password);
+
+    return hashedPassword;
   }
 
   async signUp(data: UserDTO) {
@@ -37,5 +46,10 @@ export class AuthService {
     } catch (err) {
       throw new BadRequestException(err.message);
     }
+  }
+
+  async hashPassword(password: string): Promise<string> {
+    const saltRounds = 10;
+    return await bcrypt.hash(password, saltRounds);
   }
 }
