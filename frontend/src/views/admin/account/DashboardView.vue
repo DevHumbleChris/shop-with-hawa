@@ -99,7 +99,7 @@ watchEffect(() => {
                     <p class="text-indigo-600 font-bold">Total Number Of Users</p>
                     <div class="flex justify-between items-center">
                         <UsersIcon class="w-12 text-gray-500" />
-                        <p class="text-5xl text-primary">{{ users?.length }}</p>
+                        <p class="text-5xl text-primary">{{ users.length }}</p>
                     </div>
                 </div>
                 <div class="border border-gray-300 px-3 py-4 rounded-xl shadow-lg space-y-3">

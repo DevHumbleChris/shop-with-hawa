@@ -35,7 +35,8 @@ const handleSubmit = async () => {
 
         if(respData) {
             isAuthenticating.value = !isAuthenticating.value
-            authStore.setAuthenticated({ email: respData.email, token: respData.token })
+            authStore.setAuthenticated({ token: respData.token })
+            authStore.setUser({ email: respData.email, _id: respData._id})
             router.push({ name: 'admin-account' })
             toast.info(respData.message, {
                 theme: 'colored'

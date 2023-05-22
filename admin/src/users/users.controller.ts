@@ -31,9 +31,12 @@ export class UsersController {
   // Change Password.
   @Post(':id/update-password')
   async updatePassword(
-    @Body() password: string,
+    @Body() data: { password: string },
     @Param('id') id: Types.ObjectId,
   ) {
-    return await this.usersService.updatePassword({ _id: id, password });
+    return await this.usersService.updatePassword({
+      _id: id,
+      password: data.password,
+    });
   }
 }

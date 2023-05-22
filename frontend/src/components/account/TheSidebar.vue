@@ -12,6 +12,7 @@ const router = useRouter()
 
 const logOut = () => {
     authStore.logOut()
+    authStore.removeUser()
     router.push({ name: 'admin-login' })
     toast.info('Signed Out Successfully!', {
         theme: 'colored'
