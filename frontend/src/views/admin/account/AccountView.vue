@@ -1,7 +1,11 @@
 <script setup>
 import { RouterView } from 'vue-router'
 import TheSidebar from '@/components/account/TheSidebar.vue'
-import HeadWrapper from '@/components/account/HeadWrapper.vue'
+import { useHead } from 'unhead'
+
+useHead({
+  title: 'Shop With Hawa | Admin | Account'
+})
 </script>
 
 <template>

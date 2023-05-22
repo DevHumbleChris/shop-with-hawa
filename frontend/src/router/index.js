@@ -57,6 +57,11 @@ const router = createRouter({
       component: () => import('../views/admin/AdminView.vue'),
       children: [
         {
+            path: '',
+            name: 'admin-not-founnd',
+            component: () => import('../views/NotFound.vue')
+          },
+        {
           path: 'login',
           name: 'admin-login',
           component: () => import('../views/admin/LoginView.vue')
@@ -84,7 +89,8 @@ const router = createRouter({
           ]
         }
       ]
-    }
+    },
+    { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('../views/NotFound.vue') }
   ],
 });
 

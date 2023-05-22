@@ -1,5 +1,10 @@
 <script setup>
 import { HomeIcon } from '@heroicons/vue/24/outline'
+import { useHead } from 'unhead'
+
+useHead({
+  title: 'Shop With Hawa | Admin | Settings'
+})
 </script>
 
 <template>

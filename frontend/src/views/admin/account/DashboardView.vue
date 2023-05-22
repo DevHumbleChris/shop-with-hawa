@@ -4,6 +4,11 @@ import { HomeIcon, UsersIcon, Squares2X2Icon } from '@heroicons/vue/24/outline'
 import { ref, watchEffect } from 'vue'
 import { collection, onSnapshot, query } from 'firebase/firestore'
 import { db } from '@/utils/firebaseConfig'
+import { useHead } from 'unhead'
+
+useHead({
+  title: 'Shop With Hawa | Admin | Dashboard'
+})
 
 const menClothing = ref([])
 watchEffect(() => {

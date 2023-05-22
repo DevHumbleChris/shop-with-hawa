@@ -6,6 +6,11 @@ import { uploadString, getDownloadURL, ref as storageRef } from 'firebase/storag
 import { addDoc, collection, serverTimestamp, doc, updateDoc } from 'firebase/firestore'
 import { db, storage } from '@/utils/firebaseConfig'
 import { toast } from 'vue3-toastify'
+import { useHead } from 'unhead'
+
+useHead({
+  title: 'Shop With Hawa | Admin | Add Product'
+})
 
 const formDetails = ref({
     title: '',

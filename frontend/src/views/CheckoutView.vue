@@ -3,6 +3,11 @@ import { auth } from '@/utils/firebaseConfig'
 import { onBeforeMount, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCartStore } from '@/stores/cart'
+import { useHead } from 'unhead'
+
+useHead({
+  title: 'Shop With Hawa | Checkout'
+})
 
 const cartStore = useCartStore()
 const router = useRouter()
