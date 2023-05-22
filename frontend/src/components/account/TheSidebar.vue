@@ -2,8 +2,21 @@
 import { Squares2X2Icon, ArrowRightOnRectangleIcon, Cog6ToothIcon, CircleStackIcon } from '@heroicons/vue/24/solid'
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
+import { useRouter } from 'vue-router'
+import { toast } from 'vue3-toastify'
 
 const selectedRoute = ref('dashboard')
+const authStore = useAuthStore()
+const router = useRouter()
+
+const logOut = () => {
+    authStore.logOut()
+    router.push({ name: 'admin-login' })
+    toast.info('Signed Out Successfully!', {
+        theme: 'colored'
+    })
+}
 </script>
 
 <template>
@@ -36,7 +49,7 @@ const selectedRoute = ref('dashboard')
                 </RouterLink>
             </li>
         </ul>
-        <button class="text-white hidden absolute bottom-4 left-5 md:flex justify-center items-center space-x-3">
+        <button @click="logOut" class="text-white hidden absolute bottom-4 left-5 md:flex justify-center items-center space-x-3">
             <ArrowRightOnRectangleIcon class="w-auto h-8 sm:h-8" />
             <p class="text-lg hidden md:block">Logout</p>
         </button>

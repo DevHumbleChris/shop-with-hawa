@@ -41,6 +41,7 @@ export class AuthService {
     }
 
     return {
+      _id: user._id,
       email: user.email,
       token: user.token,
       message: 'Signed in Successfully!',

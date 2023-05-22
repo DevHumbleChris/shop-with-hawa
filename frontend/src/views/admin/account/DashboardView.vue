@@ -1,13 +1,27 @@
 <script setup>
 import DashboardPic from '@/assets/images/dashboard.webp'
 import { HomeIcon, UsersIcon, Squares2X2Icon } from '@heroicons/vue/24/outline'
-import { ref, watchEffect } from 'vue'
+import { ref, watchEffect, onBeforeMount } from 'vue'
 import { collection, onSnapshot, query } from 'firebase/firestore'
 import { db } from '@/utils/firebaseConfig'
 import { useHead } from 'unhead'
+import { instance } from '@/utils/axiosConfig'
 
 useHead({
   title: 'Shop With Hawa | Admin | Dashboard'
+})
+
+const users = ref([])
+onBeforeMount(async () => {
+  const token = localStorage.getItem('token')
+  if (token) {
+    const resp = await instance.get('users/get-users', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    users.value = resp.data.users
+  }
 })
 
 const menClothing = ref([])
@@ -85,7 +99,7 @@ watchEffect(() => {
                     <p class="text-indigo-600 font-bold">Total Number Of Users</p>
                     <div class="flex justify-between items-center">
                         <UsersIcon class="w-12 text-gray-500" />
-                        <p class="text-5xl text-primary">34</p>
+                        <p class="text-5xl text-primary">{{ users?.length }}</p>
                     </div>
                 </div>
                 <div class="border border-gray-300 px-3 py-4 rounded-xl shadow-lg space-y-3">

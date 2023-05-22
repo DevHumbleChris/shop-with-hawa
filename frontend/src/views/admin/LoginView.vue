@@ -1,12 +1,24 @@
 <script setup>
 import { instance } from '@/utils/axiosConfig'
-import { ref } from 'vue'
+import { ref, onBeforeMount } from 'vue'
 import { toast } from 'vue3-toastify';
 import { ClipLoader } from 'vue3-spinner'
 import { useHead } from 'unhead'
+import { useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
 
 useHead({
   title: 'Shop With Hawa | Admin | Login '
+})
+
+const router = useRouter()
+const authStore = useAuthStore()
+
+onBeforeMount(() => {
+    const isAuthenticated = JSON.parse(localStorage.getItem('authenticated'))
+    if (isAuthenticated) {
+        router.push({ name: 'admin-login' })
+    }
 })
 
 const formDetails = ref({
@@ -19,12 +31,27 @@ const handleSubmit = async () => {
     isAuthenticating.value = !isAuthenticating.value
     try {
         const response = await instance.post('auth/signin', formDetails.value)
-        console.log(response)
+        const respData = await response.data
+
+        if(respData) {
+            isAuthenticating.value = !isAuthenticating.value
+            authStore.setAuthenticated({ email: respData.email, token: respData.token })
+            router.push({ name: 'admin-account' })
+            toast.info(respData.message, {
+                theme: 'colored'
+            })
+        }
     } catch (err) {
         isAuthenticating.value = !isAuthenticating.value
-        toast.error(err.message, {
-            theme: 'auto'
-        })
+        if (err?.response?.data?.message) {
+            toast.error(err.response.data.message, {
+                theme: 'auto'
+            })
+        } else {
+            toast.error(err?.message, {
+                theme: 'auto'
+            })
+        }
     }
 }
 </script>
