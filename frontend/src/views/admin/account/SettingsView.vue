@@ -61,6 +61,38 @@ const handleChangePassword = async () => {
     } catch (err) {
         isChangingPassword.value = !isChangingPassword.value
         if (err?.response?.data?.message) {
+            adminDetails.value = {
+                email: '',
+                password: ''
+            }
+            toast.error(err.response.data.message, {
+                theme: 'auto'
+            })
+        } else {
+            toast.error(err?.message, {
+                theme: 'auto'
+            })
+        }
+    }
+}
+
+const handleCreateAdmin = async () => {
+    isCreatingAdmin.value = !isCreatingAdmin.value
+    try {
+        const token = localStorage.getItem('token')
+        const resp = await instance.post(`users/new-admin`, adminDetails.value, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        if (resp.data) {
+            toast.info('You\'ve Successfully Added A New Admin', {
+                theme: 'colored'
+            })
+        }
+    } catch (err) {
+        isCreatingAdmin.value = !isCreatingAdmin.value
+        if (err?.response?.data?.message) {
             toast.error(err.response.data.message, {
                 theme: 'auto'
             })
@@ -114,7 +146,7 @@ const handleChangePassword = async () => {
 
             <div class="space-y-3">
                 <h2 class="font-bold text-indigo-600 text-lg">Create User</h2>
-                <form class="space-y-4">
+                <form @submit.prevent="handleCreateAdmin" class="space-y-4">
                     <div class="space-y-2">
                         <label for="email" class="block font-medium leading-6 text-gray-900">Email</label>
                         <input v-model="adminDetails.email" type="text" id="email"
