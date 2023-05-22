@@ -12,7 +12,7 @@ export class FirebaseAdmin {
   private app = admin.initializeApp({
     credential: admin.credential.cert({
       projectId: this.configService.get('FIREBASE_PROJECT_ID'),
-      privateKey: this.configService.get('FIREBASE_PRIVATE_KEY'),
+      privateKey: process.env.FIREBASE_PRIVATE_KEY,
       clientEmail: this.configService.get('FIREBASE_CLIENT_EMAIL'),
     }),
   });
