@@ -51,6 +51,10 @@ export const useCartStore = defineStore("cart", () => {
     }, 0);
   });
 
+  const clearCart = () => {
+    cart.value = []
+  }
+
   return {
     isShoppingCartOpen,
     openShoppingCart,
@@ -61,5 +65,6 @@ export const useCartStore = defineStore("cart", () => {
     decQuantity,
     removeProdFromCart,
     subTotal,
+    clearCart
   };
 });
