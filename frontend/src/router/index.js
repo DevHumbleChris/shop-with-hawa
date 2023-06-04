@@ -82,6 +82,11 @@ const router = createRouter({
               component: () => import('../views/admin/account/ProductAdd.vue')
             },
             {
+              path: 'add-product',
+              name: 'add-product',
+              component: () => import('../views/admin/account/OrdersView.vue')
+            },
+            {
               path: 'settings',
               name: 'settings',
               component: () => import('../views/admin/account/SettingsView.vue')
