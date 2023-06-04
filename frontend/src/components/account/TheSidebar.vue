@@ -42,6 +42,20 @@ const logOut = () => {
                 </RouterLink>
             </li>
             <li class="md:w-full">
+                <RouterLink to="/admin/account/orders" class="flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-auto h-6 sm:h-8" viewBox="0 0 24 24">
+                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2">
+                            <path d="m7 10l5-6l5 6m4 0l-2 8a2 2.5 0 0 1-2 2H7a2 2.5 0 0 1-2-2l-2-8z" />
+                            <path d="M10 15a2 2 0 1 0 4 0a2 2 0 1 0-4 0" />
+                        </g>
+                    </svg>
+                    <p :class="selectedRoute === 'orders' ? 'text-xs md:text-lg' : 'hidden md:block md:text-lg'">
+                        Orders
+                    </p>
+                </RouterLink>
+            </li>
+            <li class="md:w-full">
                 <RouterLink to="/admin/account/settings" class="flex items-center space-x-2">
                     <Cog6ToothIcon class="w-auto h-6 sm:h-8" />
                     <p :class="selectedRoute === 'settings' ? 'text-xs md:text-lg' : 'hidden md:block md:text-lg'">
@@ -50,9 +64,9 @@ const logOut = () => {
                 </RouterLink>
             </li>
         </ul>
-        <button @click="logOut" class="text-white hidden absolute bottom-4 left-5 md:flex justify-center items-center space-x-3">
-            <ArrowRightOnRectangleIcon class="w-auto h-8 sm:h-8" />
-            <p class="text-lg hidden md:block">Logout</p>
-        </button>
-    </aside>
-</template>
+        <button @click="logOut"
+            class="text-white hidden absolute bottom-4 left-5 md:flex justify-center items-center space-x-3">
+        <ArrowRightOnRectangleIcon class="w-auto h-8 sm:h-8" />
+        <p class="text-lg hidden md:block">Logout</p>
+    </button>
+</aside></template>

@@ -6,14 +6,21 @@ import { useCartStore } from '@/stores/cart'
 import { useHead } from 'unhead'
 import { toast } from 'vue3-toastify';
 import { ClipLoader } from 'vue3-spinner'
+import { addDoc, collection, serverTimestamp } from '@firebase/firestore'
+import { db } from '@/utils/firebaseConfig'
+import { useHeaderStore } from '@/stores/header'
 
 useHead({
     title: 'Shop With Hawa | Checkout'
 })
 
 const cartStore = useCartStore()
+const headStore = useHeaderStore()
 const router = useRouter()
 const isPlacingOrder = ref(false)
+const user = computed(() => {
+    return headStore?.userInfo
+})
 const formDetails = ref({
     email: '',
     phoneNo: '',
@@ -48,21 +55,32 @@ const removeProdFromCart = (prodId) => {
     cartStore.removeProdFromCart(prodId)
 }
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
     isPlacingOrder.value = !isPlacingOrder.value
     if (formDetails.value.email && formDetails.value.billAddress && formDetails.value.phoneNo) {
-        setTimeout(() => {
-            isPlacingOrder.value = !isPlacingOrder.value
-            formDetails.value = {
-                email: '',
-                phoneNo: '',
-                billAddress: ''
-            }
-            cartStore.clearCart()
-            toast.info('Order Placed', {
-                theme: 'auto'
-            })
-        }, 3000)
+        const docref = await addDoc(collection(db,"orders"), {
+            user: user?.value,
+            ...formDetails?.value,
+            cart: cart?.value,
+            subTotal: subTotal?.value,
+            isOrderConfirmed: true,
+            isOrderPaid: false,
+            timestamp: serverTimestamp()
+        })
+        if (docref) {
+            setTimeout(() => {
+                isPlacingOrder.value = !isPlacingOrder.value
+                formDetails.value = {
+                    email: '',
+                    phoneNo: '',
+                    billAddress: ''
+                }
+                cartStore.clearCart()
+                toast.info('Order Placed', {
+                    theme: 'auto'
+                })
+            }, 3000)
+        }
     }
 }
 </script>
