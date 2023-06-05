@@ -51,6 +51,10 @@ watchEffect(() => {
             <img src="@/assets/images/orders.png" alt="orders">
             <div class="space-y-3">
                 <h2 class="text-xl font-medium">Orders Placed.</h2>
+                <div v-if="userOrder.length < 0">
+                No Orders Placed.
+                </div>
+                <div v-else>
                 <div v-for="order in userOrders" :key="order.id" class="flex items-center space-x-2 border rounded-lg hover:drop-shadow-lg p-2 hover:shadow-lg hover:bg-white">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-auto text-gray-500" viewBox="0 0 24 24">
                         <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -64,6 +68,7 @@ watchEffect(() => {
                         <p><span class="font-bold">Order Status: </span>{{ order.isOrderConfirmed ? 'Order Received' : 'Not Received' }}</p>
                         <p><span class="font-bold">Payment Status:</span> <span :class="order?.isOrderPaid ? 'text-green-600': 'text-red-600'">{{ order?.isOrderPaid ? 'Paid' : 'Not Paid' }}</span></p>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
