@@ -51,7 +51,7 @@ watchEffect(() => {
             <img src="@/assets/images/orders.png" alt="orders">
             <div class="space-y-3">
                 <h2 class="text-xl font-medium">Orders Placed.</h2>
-                <div v-if="userOrder.length < 0">
+                <div v-if="userOrders?.length < 0">
                 No Orders Placed.
                 </div>
                 <div v-else>
