@@ -81,7 +81,7 @@ watchEffect(() => {
   products.value = [...menClothing.value, ...womenClothing.value, ...jewellery.value, ...electronics.value]
 })
 
-const orders = []
+const orders = ref([])
 watchEffect(() => {
   const q = query(collection(db, "orders"), orderBy('timestamp'));
   const unsub = onSnapshot(q, (querySnapshot) => {
