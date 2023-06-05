@@ -55,7 +55,7 @@ watchEffect(() => {
                 No Orders Placed.
                 </div>
                 <div v-else>
-                <div v-for="order in userOrders" :key="order.id" class="flex items-center space-x-2 border rounded-lg hover:drop-shadow-lg p-2 hover:shadow-lg hover:bg-white">
+                <div v-for="order in userOrders" :key="order.id" class="flex space-y-2 items-center space-x-2 border rounded-lg hover:drop-shadow-lg p-2 hover:shadow-lg hover:bg-white">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-auto text-gray-500" viewBox="0 0 24 24">
                         <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                             stroke-width="2">
